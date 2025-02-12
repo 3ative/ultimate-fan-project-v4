@@ -1,0 +1,196 @@
+substitutions:
+  name: kitchen
+
+esphome:
+  name: "fan-kitchen"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+  logs:
+    switch: NONE
+    binary_sensor: NONE
+
+api:
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+binary_sensor:
+  - platform: gpio
+    name: $name Fan But1
+    id: button1
+    pin: 
+      number: 27
+      inverted: True
+      mode:
+        input: True
+        pullup: True
+    filters:
+      - delayed_on_off: 10ms
+    on_press:
+      then:
+        - lambda: |-
+            if (id(fanspeed).state == 1 && id(master).state) {
+              id(master).turn_off();
+            } else {
+              id(fanspeed).publish_state(1), id(master).turn_on(), id(randomSwitch).turn_off();
+            }
+    on_click:
+      min_length: 1s
+      max_length: 5s
+      then:
+        - switch.turn_on: randomSwitch
+
+  - platform: gpio
+    name: $name Fan But2
+    id: button2
+    pin:
+      number: 14
+      inverted: True
+      mode:
+        input: True
+        pullup: True
+    filters:
+      - delayed_on_off: 10ms
+    on_press:
+      then:
+        - lambda: |-
+            if (id(fanspeed).state == 2 && id(master).state) {
+              id(master).turn_off();
+            } else {
+              id(fanspeed).publish_state(2), id(master).turn_on(), id(randomSwitch).turn_off();
+            }
+
+  - platform: gpio
+    name: $name Fan But3
+    id: button3
+    pin:
+      number: 12
+      inverted: True
+      mode:
+        input: True
+        pullup: True
+    filters:
+      - delayed_on_off: 10ms
+    on_press:
+      then:
+        - lambda: |-
+            if (id(fanspeed).state == 3 && id(master).state) {
+              id(master).turn_off();
+            } else {
+              id(fanspeed).publish_state(3), id(master).turn_on(), id(randomSwitch).turn_off();
+            }
+
+number:
+  ### Slider for Home Assistant and Fan Speed Control ###
+  - platform: template
+    name: $name Fan Speed
+    id: fanspeed
+    icon: mdi:weather-windy
+    update_interval: never
+    optimistic: true
+    min_value: 1
+    max_value: 3
+    initial_value: 1
+    step: 1
+    on_value:
+      - lambda: >-
+          if ( id(master).state ) {
+            if (x == 1) {return id(relay1).turn_on();}
+            if (x == 2) {return id(relay2).turn_on();}
+            if (x == 3) {return id(relay3).turn_on();}
+          }
+
+interval:
+  ### Random 'Party' Mode ###
+  - interval: 5s
+    then:
+      if:
+        condition:
+          switch.is_on: randomSwitch
+        then:
+          - lambda: |-
+              int rs = 1 + round(random_float()*2);
+              id(fanspeed).publish_state(rs);
+
+switch:
+  ### "Party" Mode (Random) Switch ###
+  - platform: template
+    id: randomSwitch
+    icon: mdi:recycle
+    name: $name Fan Random
+    optimistic: True
+    on_turn_on: 
+      - switch.turn_on: master
+
+  ### "Master" Control Switch ###
+  - platform: template
+    id: master
+    icon: mdi:fan
+    name: $name Fan Master
+    optimistic: true
+    on_turn_on:
+      then:
+        - lambda: >-
+            switch ( (int) id(fanspeed).state ) {
+              case 1:
+                id(relay1).turn_on(); break;
+              case 2:
+                id(relay2).turn_on(); break;
+              case 3:
+                id(relay3).turn_on(); break;
+            }        
+    on_turn_off:
+      then:
+        - lambda: |-
+            id(relay1).turn_off(), id(relay2).turn_off(), id(relay3).turn_off(), id(randomSwitch).turn_off();
+
+  ### On-Board Relays (NOT "Relais" - That's French LOL) ###
+  - platform: gpio
+    name: $name Fan Relay1
+    icon: mdi:fan-speed-1
+    id: relay1
+    pin: 32
+    interlock: &interlock_group [relay1, relay2, relay3]
+    interlock_wait_time: 200ms
+
+  - platform: gpio
+    name: $name Fan Relay2
+    icon: mdi:fan-speed-2
+    id: relay2
+    pin: 33
+    interlock: *interlock_group
+    interlock_wait_time: 200ms
+
+  - platform: gpio
+    name: $name Fan Relay3
+    icon: mdi:fan-speed-3
+    id: relay3
+    pin: 25
+    interlock: *interlock_group
+    interlock_wait_time: 200ms
+
+  - platform: gpio
+    name: $name Fan Relay4
+    icon: mdi:electric-switch
+    id: relay4
+    pin: 26
+
+light:
+  ### The Other On-Board LED. Not used, just for Reference. ###
+  - platform: monochromatic
+    name: $name Fan LED
+    id: led1
+    output: led1Out
+
+output:
+  - platform: ledc
+    id: led1Out
+    pin: 23
