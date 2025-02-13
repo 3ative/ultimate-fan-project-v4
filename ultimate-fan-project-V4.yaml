@@ -132,12 +132,17 @@ switch:
 
   ### "Master" Control Switch ###
   - platform: template
+  - platform: template
     id: master
     icon: mdi:fan
     name: $name Fan Master
     optimistic: true
     on_turn_on:
       then:
+        # - lambda: >-
+        #     if (id(fanspeed).state == 1) {return id(relay1).turn_on();}
+        #     if (id(fanspeed).state == 2) {return id(relay2).turn_on();}
+        #     if (id(fanspeed).state == 3) {return id(relay3).turn_on();}
         - lambda: >-
             switch ( (int) id(fanspeed).state ) {
               case 1:
