@@ -132,7 +132,6 @@ switch:
 
   ### "Master" Control Switch ###
   - platform: template
-  - platform: template
     id: master
     icon: mdi:fan
     name: $name Fan Master
