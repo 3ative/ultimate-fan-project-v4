@@ -117,45 +117,45 @@ number:
     initial_value: 1
     step: 1
     on_value:
-      # - if:
-      #     condition:
-      #       - switch.is_on: master
-      #     then:
-            # - lambda: >-
-            #     if (x == 1) {return id(relay1).turn_on();}
-            #     if (x == 2) {return id(relay2).turn_on();}
-            #     if (x == 3) {return id(relay3).turn_on();}
+      - if:
+          condition:
+            - switch.is_on: master
+          then:
+            - lambda: >-
+                if (x == 1) {return id(relay1).turn_on();}
+                if (x == 2) {return id(relay2).turn_on();}
+                if (x == 3) {return id(relay3).turn_on();}
 
-      # - lambda: >-
-      #     if ( id(master).state ) {
-      #       if (x == 1) {return id(relay1).turn_on();}
-      #       if (x == 2) {return id(relay2).turn_on();}
-      #       if (x == 3) {return id(relay3).turn_on();}
-      #     }
+    # on_value:
+    #   - lambda: >-
+    #       if ( id(master).state ) {
+    #         if (x == 1) {return id(relay1).turn_on();}
+    #         if (x == 2) {return id(relay2).turn_on();}
+    #         if (x == 3) {return id(relay3).turn_on();}
+    #       }
 
-      - lambda: >-
-          if (id(master).state) {
-            switch ((int)x) {
-              case 1:
-                id(relay1).turn_on(); break;
-              case 2:
-                id(relay2).turn_on(); break;
-              case 3:
-                id(relay3).turn_on(); break;
-            }
-          }
+    # on_value:
+    #   - lambda: >-
+    #       if (id(master).state) {
+    #         switch ((int)x) {
+    #           case 1:
+    #             id(relay1).turn_on(); break;
+    #           case 2:
+    #             id(relay2).turn_on(); break;
+    #           case 3:
+    #             id(relay3).turn_on(); break;
+    #         }
+    #       }
 
 interval:
   ### Random 'Party' Mode ###
   - interval: 2s
     then:
-      if:
-        condition:
-          switch.is_on: randomSwitch
-        then:
-          - lambda: |-
-              int rs = 1 + round(random_float()*2);
-              id(fanspeed).publish_state(rs);
+      - lambda: |-
+          if (id(randomSwitch).state) {
+            int randomSpeed = 1 + round(random_float()*2);
+            id(fanspeed).publish_state(randomSpeed);
+          }
 
 switch:
   ### "Party" Mode (Random) Switch ###
