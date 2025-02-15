@@ -235,4 +235,3 @@ output:
   - platform: ledc
     id: led1Out
     pin: 23
-
