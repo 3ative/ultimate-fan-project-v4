@@ -116,6 +116,7 @@ number:
     max_value: 3
     initial_value: 1
     step: 1
+    ## Option 1: Basic If-Then 
     on_value:
       - if:
           condition:
@@ -173,27 +174,33 @@ switch:
     icon: mdi:fan
     name: $name Fan Master
     optimistic: true
+
+    ## Option 1: Basic Lambda
     on_turn_on:
-      then:
-        # - lambda: >-
-        #     if (id(fanspeed).state == 1) {return id(relay1).turn_on();}
-        #     if (id(fanspeed).state == 2) {return id(relay2).turn_on();}
-        #     if (id(fanspeed).state == 3) {return id(relay3).turn_on();}
-        - lambda: >-
-            switch ( (int) id(fanspeed).state ) {
-              case 1:
-                id(relay1).turn_on(); break;
-              case 2:
-                id(relay2).turn_on(); break;
-              case 3:
-                id(relay3).turn_on(); break;
-            }
+      - lambda: >-
+          if (id(fanspeed).state == 1) {return id(relay1).turn_on();}
+          if (id(fanspeed).state == 2) {return id(relay2).turn_on();}
+          if (id(fanspeed).state == 3) {return id(relay3).turn_on();}
+    
+    ## Option 2: Lambda with Switch & Cases
+    on_turn_on:
+      - lambda: >-
+          switch ( (int) id(fanspeed).state ) {
+            case 1:
+              id(relay1).turn_on(); break;
+            case 2:
+              id(relay2).turn_on(); break;
+            case 3:
+              id(relay3).turn_on(); break;
+          }
+  
+    ## Turn of the "Master", turn off Everything!
     on_turn_off:
       then:
         - lambda: |-
             id(relay1).turn_off(), id(relay2).turn_off(), id(relay3).turn_off(), id(randomSwitch).turn_off();
 
-  ### On-Board Relays (NOT "Relais" - That's French LOL) ###
+  ## On-Board Relays (NOT "Relais" - That's French LOL) ###
   - platform: gpio
     name: $name Fan Relay1
     icon: mdi:fan-speed-1
@@ -224,8 +231,8 @@ switch:
     id: relay4
     pin: 26
 
+## The Other On-Board LED. Not used, just for Reference. ###
 light:
-  ### The Other On-Board LED. Not used, just for Reference. ###
   - platform: monochromatic
     name: $name Fan LED
     id: led1
@@ -235,3 +242,4 @@ output:
   - platform: ledc
     id: led1Out
     pin: 23
+##############################################################
