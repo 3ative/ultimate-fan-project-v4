@@ -183,16 +183,16 @@ switch:
           if (id(fanspeed).state == 3) {return id(relay3).turn_on();}
     
     ## Option 2: Lambda with Switch & Cases
-    on_turn_on:
-      - lambda: >-
-          switch ( (int) id(fanspeed).state ) {
-            case 1:
-              id(relay1).turn_on(); break;
-            case 2:
-              id(relay2).turn_on(); break;
-            case 3:
-              id(relay3).turn_on(); break;
-          }
+    # on_turn_on:
+    #   - lambda: >-
+    #       switch ( (int) id(fanspeed).state ) {
+    #         case 1:
+    #           id(relay1).turn_on(); break;
+    #         case 2:
+    #           id(relay2).turn_on(); break;
+    #         case 3:
+    #           id(relay3).turn_on(); break;
+    #       }
   
     ## Turn of the "Master", turn off Everything!
     on_turn_off:
