@@ -13,7 +13,7 @@ Convert any 3-Speed fan for Home Assistant control with ESPHome.
 
 #### YouTube tutorial: [Ultimate Fan Project v4.0](https://youtu.be/_XgJyYwlejo)
 
-#### Button Card tutorial: [Custom Button Card Part4](https://youtu.be/-7Hu9lMZsjw)
+#### Button Card tutorial: [Custom Button Card Part 4](https://youtu.be/-7Hu9lMZsjw)
 
 ___
 
