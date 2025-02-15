@@ -1,11 +1,11 @@
 # Ultimate Fan Project v4.0
-Converting any 3-Speed fan for Home Assistant control with ESPHome and a Sonoff Basic.
+Convert any 3-Speed fan for Home Assistant control with ESPHome.
 
 #### _Features:_
 
-> - LED Speed indicators
-> - Original button functions
 > - ESP32 4-Relay board for easier builds
+> - 3 LED Speed indicators
+> - Original Button functions
 
 #### *Code-y Bits*
 - ESPHome Code: [ultimate-fan-project-V4.yaml](https://github.com/3ative/ultimate-fan-project-v4/blob/main/ultimate-fan-project-V4.yaml)
@@ -13,7 +13,7 @@ Converting any 3-Speed fan for Home Assistant control with ESPHome and a Sonoff 
 
 #### YouTube tutorial: [Ultimate Fan Project v4.0](https://youtu.be/_XgJyYwlejo)
 
-#### Code tutorial of the [Custom Button Card Part4](https://youtu.be/-7Hu9lMZsjw)
+#### Button Card tutorial: [Custom Button Card Part4](https://youtu.be/-7Hu9lMZsjw)
 
 ___
 
