@@ -1,5 +1,5 @@
 # Ultimate Fan Project v4.0
-Convert any 3-Speed fan for Home Assistant control with ESPHome.
+Converting a 3-Speed Fan for Home Assistant control with ESPHome.
 
 #### _Features:_
 

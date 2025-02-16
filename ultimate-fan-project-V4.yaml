@@ -24,7 +24,7 @@ wifi:
 
 binary_sensor:
   - platform: gpio
-    name: $name Fan But1
+    name: Fan $name But1
     id: button1
     pin: 
       number: 27
@@ -69,7 +69,7 @@ binary_sensor:
         - switch.turn_on: randomSwitch
 
   - platform: gpio
-    name: $name Fan But2
+    name: Fan $name But2
     id: button2
     pin:
       number: 14
@@ -89,7 +89,7 @@ binary_sensor:
             }
 
   - platform: gpio
-    name: $name Fan But3
+    name: Fan $name But3
     id: button3
     pin:
       number: 12
@@ -111,7 +111,7 @@ binary_sensor:
 number:
   ## Slider for Home Assistant and Fan Speed Control ##
   - platform: template
-    name: $name Fan Speed
+    name: Fan $name Speed
     id: fanspeed
     icon: mdi:weather-windy
     update_interval: never
@@ -169,7 +169,7 @@ switch:
   - platform: template
     id: randomSwitch
     icon: mdi:recycle
-    name: $name Fan Random
+    name: Fan $name Random
     optimistic: True
     on_turn_on: 
       - switch.turn_on: master
@@ -178,7 +178,7 @@ switch:
   - platform: template
     id: master
     icon: mdi:fan
-    name: $name Fan Master
+    name: Fan $name Master
     optimistic: true
 
     ## Option 1: Basic Lambda ##
@@ -208,7 +208,7 @@ switch:
 
   ## On-Board Relays (NOT "Relais" - That's French LOL) ##
   - platform: gpio
-    name: $name Fan Relay1
+    name: Fan $name Relay1
     icon: mdi:fan-speed-1
     id: relay1
     pin: 32
@@ -216,7 +216,7 @@ switch:
     interlock_wait_time: 200ms
 
   - platform: gpio
-    name: $name Fan Relay2
+    name: Fan $name Relay2
     icon: mdi:fan-speed-2
     id: relay2
     pin: 33
@@ -224,7 +224,7 @@ switch:
     interlock_wait_time: 200ms
 
   - platform: gpio
-    name: $name Fan Relay3
+    name: Fan $name Relay3
     icon: mdi:fan-speed-3
     id: relay3
     pin: 25
@@ -233,7 +233,7 @@ switch:
 
   ## Not Used for this Project ##
   - platform: gpio
-    name: $name Fan Relay4
+    name: Fan $name Relay4
     icon: mdi:electric-switch
     id: relay4
     pin: 26
@@ -242,7 +242,7 @@ switch:
 ## The Other On-Board LED. Not used, just for Reference. ##
 light:
   - platform: monochromatic
-    name: $name Fan LED
+    name: Fan $name LED
     id: led1
     output: led1Out
 
