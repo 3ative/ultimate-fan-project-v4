@@ -12,7 +12,7 @@ Converting a 3-Speed Fan for Home Assistant control with ESPHome.
 - ESP32 Development Board, 4 Way Relay Module: [AliExpress](https://s.click.aliexpress.com/e/_olzHSy9)
 - Nylon Spacer/Stand-off Set: [Amazon UK](https://amzn.to/3Rb6MTy)
 - Nylon Spacer/Stand-off Set: [Amazon US](https://amzn.to/4bxdHjp)
-##### *As an Amazon Associate I earn from qualifying purchases. Using these links ⇈ provides small monetary support for my channel at no extra cost to you.💖
+##### *As an Amazon Associate I earn from qualifying purchases. Using these links ⇈ provides monetary support at no extra cost to you. Thank you for using them💖
 
 #### *Code-y Bits*
 - ESPHome Code: [ultimate-fan-project-V4.yaml](https://github.com/3ative/ultimate-fan-project-v4/blob/main/ultimate-fan-project-V4.yaml)
