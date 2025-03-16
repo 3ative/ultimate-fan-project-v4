@@ -8,7 +8,7 @@ Converting a 3-Speed Fan for Home Assistant control with ESPHome.
 
 ##### Parts List:
 - 16" Desktop Desk Fan: [Amazon UK](https://amzn.to/4iP2jC3) ----- [Amazon US](https://amzn.to/4bvbtRD)
-- ESP32 Development Board, 4 Way Relay Module: [Amazon UK](https://amzn.to/4bRIK9I) ----- [Amazon US](https://amzn.to/4bzvFSw) ----- [AliExpress](https://s.click.aliexpress.com/e/_olzHSy9)
+- ESP32 4-Relay Module: [Amazon UK](https://amzn.to/4bRIK9I) ----- [Amazon US](https://amzn.to/4bzvFSw) ----- [AliExpress](https://s.click.aliexpress.com/e/_olzHSy9)
 - Nylon Spacer/Stand-off Set: [Amazon UK](https://amzn.to/3Rb6MTy) ----- [Amazon US](https://amzn.to/4bxdHjp)
 ##### *As an Amazon Associate I earn from qualifying purchases. Using these links ⇈ provides monetary support at no extra cost to you. Thank you for using them💖
 
