@@ -7,6 +7,7 @@ Converting a 3-Speed Fan for Home Assistant control with ESPHome.
 > - Original Button functions
 
 ##### Parts List:
+- 3 x 3mm Blue LEDs ----- 3 x 1K 1/4 Watt Resistors
 - 16" Desktop Desk Fan: [Amazon UK](https://amzn.to/4iP2jC3) ----- [Amazon US](https://amzn.to/4bvbtRD)
 - ESP32 4-Relay Module: [Amazon UK](https://amzn.to/4bRIK9I) ----- [Amazon US](https://amzn.to/4bzvFSw) ----- [AliExpress](https://s.click.aliexpress.com/e/_olzHSy9)
 - Nylon Spacer/Stand-off Set: [Amazon UK](https://amzn.to/3Rb6MTy) ----- [Amazon US](https://amzn.to/4bxdHjp)
