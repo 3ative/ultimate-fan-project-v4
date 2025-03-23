@@ -5,7 +5,8 @@ Converting a 3-Speed Fan for Home Assistant control with ESPHome.
 > - ESP32 4-Relay board for easier builds
 > - 3 LED Speed indicators
 > - Original Button functions
-
+> - Random Mode for Power saving and "Wind" effect
+###### Note: "Random" mode, as coded here, does not equally select all 3 Speeds. Instead in centers on Speed 2 for fewer changes and averaging output.
 ##### Parts List:
 - 3 x 3mm Blue LEDs ----- 3 x 1K 1/4 Watt Resistors
 - 16" Desktop Desk Fan: [Amazon UK](https://amzn.to/4iP2jC3) ----- [Amazon US](https://amzn.to/4bvbtRD)
