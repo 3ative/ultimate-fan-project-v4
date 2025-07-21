@@ -3,6 +3,12 @@ substitutions:
 
 esphome:
   name: "fan-kitchen"
+  #### Wait 10 Seconds, then enable WiFi #####
+  on_boot:
+    then:
+      - delay: 10s
+      - wifi.enable:
+  ########################
 
 esp32:
   board: esp32dev
@@ -21,6 +27,8 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+  #### Disable WiFi on boot to allow local automations to run without waiting for WiFi to connect ####
+  enable_on_boot: false
 
 binary_sensor:
   - platform: gpio
